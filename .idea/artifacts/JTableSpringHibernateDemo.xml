@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="JTableSpringHibernateDemo">
+    <output-path>E:/Tomcat/webapps/JTableSpringHibernateDemo</output-path>
+    <root id="root">
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="JTableSpringHibernateDemo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
