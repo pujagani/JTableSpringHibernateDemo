@@ -4,6 +4,7 @@ import model.*;
 import org.hibernate.*;
 import org.hibernate.boot.*;
 import org.hibernate.boot.registry.*;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.propertyeditors.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.*;
@@ -163,6 +164,11 @@ public class BaseController {
 
     // Printing entire stack trace to debug.
     public static String exceptionToString(Throwable ex) {
+        Throwable cause = ex.getCause();
+        if (cause instanceof SQLGrammarException) {
+            SQLGrammarException SQLGrammarException = (SQLGrammarException) cause;
+            return SQLGrammarException.getSQLException().getMessage();
+        }
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         ex.printStackTrace(new PrintStream(stream));
         return new String(stream.toByteArray());
