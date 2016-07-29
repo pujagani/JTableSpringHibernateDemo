@@ -23,16 +23,17 @@ $(document).ready(function () {
 
     function studentPhone(studentData) {
     // Setting the parameters as required.
-    	StudentPhoneJTable.title = studentData.record.name + ' - Phone numbers';
-    	StudentPhoneJTable.actions.listAction = 'StudentPhone/List?student_id=' + studentData.record.id;
-    	StudentPhoneJTable.fields.student_id.defaultValue = studentData.record.id;
+    var jtable = $.extend(true,{},StudentPhoneJTable);
+    	jtable.title = studentData.record.name + ' - Phone numbers';
+    	jtable.actions.listAction = 'StudentPhone/List?student_id=' + studentData.record.id;
+    	jtable.fields.student_id.defaultValue = studentData.record.id;
     	var $img = $('<img src="../css/img/phone.png" title="Edit phone numbers" />');
     	$img.css({
     		cursor : 'pointer'
     	});
     	$img.click(function () {
     		$('#JTable').jtable('openChildTable',
-    			$img.closest('tr'), StudentPhoneJTable, function (data) {
+    			$img.closest('tr'), jtable, function (data) {
     			data.childTable.jtable('load');
     		});
     	});
@@ -48,16 +49,17 @@ $(document).ready(function () {
     		nameField : 'name',
     		selectionTable : CourseJTable
     	};
-    	StudentResultJTable.title = studentData.record.name + ' - Exam Results';
-    	StudentResultJTable.actions.listAction = 'StudentResult/List?student_id=' + studentData.record.id;
-    	StudentResultJTable.fields.student_id.defaultValue = studentData.record.id;
+    	var jtable = $.extend(true,{},StudentResultJTable);
+    	jtable.title = studentData.record.name + ' - Exam Results';
+    	jtable.actions.listAction = 'StudentResult/List?student_id=' + studentData.record.id;
+    	jtable.fields.student_id.defaultValue = studentData.record.id;
     	var $img = $('<img src="../css/img/exam.png" title="Edit exam results" />');
     	$img.css({
     		cursor : 'pointer'
     	});
     	$img.click(function () {
     		$('#JTable').jtable('openChildTable',
-    			$img.closest('tr'), StudentResultJTable, function (data) {
+    			$img.closest('tr'), jtable, function (data) {
     			data.childTable.jtable('load');
     		});
     	});
@@ -72,7 +74,6 @@ $(document).ready(function () {
     // Defining popUp options as required.
     StudentJTable.fields.city_name.popUpOpts = {
     	keyField : 'city_id',
-    	displayField : 'city_name',
     	idField : 'id',
     	nameField : 'name',
     	selectionTable : CityJTable
